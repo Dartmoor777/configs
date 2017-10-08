@@ -1,0 +1,242 @@
+diff --git a/layers/+completion/auto-completion/config.el b/layers/+completion/auto-completion/config.el
+index 236ded9f..37b11a86 100644
+--- a/layers/+completion/auto-completion/config.el
++++ b/layers/+completion/auto-completion/config.el
+@@ -18,7 +18,7 @@
+   "What the RET key should do when auto-completion menu is active.
+ Possible values are `complete' or `nil'.")
+ 
+-(defvar auto-completion-tab-key-behavior 'cycle
++(defvar auto-completion-tab-key-behavior 'complete
+   "What the TAB key should do when auto-completion menu is active.
+ Possible values are `complete', `cycle' or `nil'.")
+ 
+diff --git a/layers/+distributions/spacemacs-base/keybindings.el b/layers/+distributions/spacemacs-base/keybindings.el
+index 230a424c..265daca5 100644
+--- a/layers/+distributions/spacemacs-base/keybindings.el
++++ b/layers/+distributions/spacemacs-base/keybindings.el
+@@ -105,81 +105,81 @@
+ (when (memq dotspacemacs-editing-style '(vim hybrid))
+   (define-key universal-argument-map
+     (kbd (concat dotspacemacs-leader-key " u"))
+-    'universal-argument-more))
+-;; shell command  -------------------------------------------------------------
+-(spacemacs/set-leader-keys "!" 'shell-command)
+-;; applications ---------------------------------------------------------------
+-(spacemacs/set-leader-keys
+-  "ac"  'calc-dispatch
+-  "ap"  'list-processes
+-  "aP"  'proced
+-  "au"  'undo-tree-visualize)
+-;; buffers --------------------------------------------------------------------
+-(spacemacs/set-leader-keys
+-  "TAB"   'spacemacs/alternate-buffer
+-  "bd"    'spacemacs/kill-this-buffer
+-  "be"    'spacemacs/safe-erase-buffer
+-  "bh"    'spacemacs/home
+-  "b C-d" 'spacemacs/kill-matching-buffers-rudely
+-  "bn"    'next-buffer
+-  "bm"    'spacemacs/kill-other-buffers
+-  "bN"    'spacemacs/new-empty-buffer
+-  "bP"    'spacemacs/copy-clipboard-to-whole-buffer
+-  "bp"    'previous-buffer
+-  "bR"    'spacemacs/safe-revert-buffer
+-  "bs"    'spacemacs/switch-to-scratch-buffer
+-  "bY"    'spacemacs/copy-whole-buffer-to-clipboard
+-  "bw"    'read-only-mode)
+-(dotimes (i 9)
+-  (let ((n (+ i 1)))
+-    (spacemacs/set-leader-keys (format "b%i" n)
+-      (intern (format "buffer-to-window-%s" n)))))
+-;; Cycling settings -----------------------------------------------------------
+-(spacemacs/set-leader-keys "Tn" 'spacemacs/cycle-spacemacs-theme)
+-;; errors ---------------------------------------------------------------------
+-(spacemacs/set-leader-keys
+-  "en" 'spacemacs/next-error
+-  "eN" 'spacemacs/previous-error
+-  "ep" 'spacemacs/previous-error)
+-(spacemacs|define-transient-state error
+-  :title "Error transient state"
+-  :hint-is-doc t
+-  :dynamic-hint
+-  (let ((sys (spacemacs/error-delegate)))
+-    (cond
+-     ((eq 'flycheck sys)
+-      "\nBrowsing flycheck errors from this buffer.")
+-     ((eq 'emacs sys)
+-      (let ((buf (next-error-find-buffer)))
+-        (if buf
+-            (concat "\nBrowsing entries from \""
+-                    (buffer-name buf)
+-                    "\""
+-                    (with-current-buffer buf
+-                      (when spacemacs--gne-line-func
+-                        (format " (%d of %d)"
+-                                (max 1 (1+ (- spacemacs--gne-cur-line
+-                                              spacemacs--gne-min-line)))
+-                                (1+ (- spacemacs--gne-max-line
+-                                       spacemacs--gne-min-line))))))
+-          "\nNo next-error capable buffer found.")))))
+-  :bindings
+-  ("n" spacemacs/next-error "next")
+-  ("p" spacemacs/previous-error "prev")
+-  ("q" nil "quit" :exit t)
+-  :evil-leader "e.")
+-;; file -----------------------------------------------------------------------
+-(spacemacs/set-leader-keys
+-  "fc" 'spacemacs/copy-file
+-  "fD" 'spacemacs/delete-current-buffer-file
+-  "fei" 'spacemacs/find-user-init-file
+-  "fed" 'spacemacs/find-dotfile
+-  "feD" 'spacemacs/ediff-dotfile-and-template
+-  "feR" 'dotspacemacs/sync-configuration-layers
+-  "fev" 'spacemacs/display-and-copy-version
+-  "fCd" 'spacemacs/unix2dos
+-  "fCu" 'spacemacs/dos2unix
+-  "fg" 'rgrep
++	  'universal-argument-more))
++  ;; shell command  -------------------------------------------------------------
++  (spacemacs/set-leader-keys "!" 'shell-command)
++  ;; applications ---------------------------------------------------------------
++  (spacemacs/set-leader-keys
++	"ac"  'calc-dispatch
++	"ap"  'list-processes
++	"aP"  'proced
++	"au"  'undo-tree-visualize)
++  ;; buffers --------------------------------------------------------------------
++  (spacemacs/set-leader-keys
++	"TAB"   'spacemacs/alternate-buffer
++	"bd"    'spacemacs/kill-this-buffer
++	"be"    'spacemacs/safe-erase-buffer
++	"bh"    'spacemacs/home
++	"b C-d" 'spacemacs/kill-matching-buffers-rudely
++	"bn"    'next-buffer
++	"bm"    'spacemacs/kill-other-buffers
++	"bN"    'spacemacs/new-empty-buffer
++	"bP"    'spacemacs/copy-clipboard-to-whole-buffer
++	"bp"    'previous-buffer
++	"bR"    'spacemacs/safe-revert-buffer
++	"bs"    'spacemacs/switch-to-scratch-buffer
++	"bY"    'spacemacs/copy-whole-buffer-to-clipboard
++	"bw"    'read-only-mode)
++  (dotimes (i 9)
++	(let ((n (+ i 1)))
++	  (spacemacs/set-leader-keys (format "b%i" n)
++		(intern (format "buffer-to-window-%s" n)))))
++  ;; Cycling settings -----------------------------------------------------------
++  (spacemacs/set-leader-keys "Tn" 'spacemacs/cycle-spacemacs-theme)
++  ;; errors ---------------------------------------------------------------------
++  (spacemacs/set-leader-keys
++	"en" 'spacemacs/next-error
++	"eN" 'spacemacs/previous-error
++	"ep" 'spacemacs/previous-error)
++  (spacemacs|define-transient-state error
++	:title "Error transient state"
++	:hint-is-doc t
++	:dynamic-hint
++	(let ((sys (spacemacs/error-delegate)))
++	  (cond
++	  ((eq 'flycheck sys)
++		"\nBrowsing flycheck errors from this buffer.")
++	  ((eq 'emacs sys)
++		(let ((buf (next-error-find-buffer)))
++		  (if buf
++			  (concat "\nBrowsing entries from \""
++					  (buffer-name buf)
++					  "\""
++					  (with-current-buffer buf
++						(when spacemacs--gne-line-func
++						  (format " (%d of %d)"
++								  (max 1 (1+ (- spacemacs--gne-cur-line
++												spacemacs--gne-min-line)))
++								  (1+ (- spacemacs--gne-max-line
++										spacemacs--gne-min-line))))))
++			"\nNo next-error capable buffer found.")))))
++	:bindings
++	("n" spacemacs/next-error "next")
++	("p" spacemacs/previous-error "prev")
++	("q" nil "quit" :exit t)
++	:evil-leader "e.")
++  ;; file -----------------------------------------------------------------------
++  (spacemacs/set-leader-keys
++	"fc" 'spacemacs/copy-file
++	"fD" 'spacemacs/delete-current-buffer-file
++	"fei" 'spacemacs/find-user-init-file
++	"fed" 'spacemacs/find-dotfile
++	"feD" 'spacemacs/ediff-dotfile-and-template
++	"feR" 'dotspacemacs/sync-configuration-layers
++	"fev" 'spacemacs/display-and-copy-version
++	"fCd" 'spacemacs/unix2dos
++	"fCu" 'spacemacs/dos2unix
++	"fg" 'rgrep
+   "fl" 'find-file-literally
+   "fE" 'spacemacs/sudo-edit
+   "fo" 'spacemacs/open-file-or-directory-in-external-app
+@@ -356,6 +356,27 @@
+              (symbol-value golden-ratio-mode))
+     (golden-ratio)))
+ 
++(defun hide-window-right ()
++  "Minimize left window."
++  (interactive)
++  (if (not 2)
++      (select-window (next-window))
++    (evil-window-top-left)
++    (other-window (1- 2)))
++  (balance-windows)
++  (enlarge-window-horizontally (+ (window-height (next-window)) 17)))
++
++
++(defun hide-window-left ()
++  "Minimize left window."
++  (interactive)
++  (if (not 1)
++      (select-window (next-window))
++    (evil-window-top-left)
++    (other-window (1- 1)))
++  (balance-windows)
++  (enlarge-window-horizontally (+ (window-height (next-window)) 17)))
++
+ (defun split-window-right-and-focus ()
+   "Split the window horizontally and focus the new window."
+   (interactive)
+@@ -407,6 +428,8 @@
+   "w/"  'split-window-right
+   "w="  'balance-windows
+   "w+"  'spacemacs/window-layout-toggle
++  "w>"  'hide-window-right
++  "w<"  'hide-window-left
+   "w_"  'spacemacs/maximize-horizontally)
+ ;; text -----------------------------------------------------------------------
+ (defalias 'count-region 'count-words-region)
+diff --git a/layers/+lang/c-c++/packages.el b/layers/+lang/c-c++/packages.el
+index 970ddfbb..dafbaced 100644
+--- a/layers/+lang/c-c++/packages.el
++++ b/layers/+lang/c-c++/packages.el
+@@ -72,8 +72,8 @@
+   (spacemacs|add-company-hook c-mode-common)
+   (spacemacs|add-company-hook cmake-mode)
+ 
+-  (when c-c++-enable-clang-support
+-    (push 'company-clang company-backends-c-mode-common)
++  (when c-c++-enable-clang-support ;;multiple backendslang-support
++		(push '(company-clang :with company-gtags) company-backends-c-mode-common)
+ 
+     (defun company-mode/more-than-prefix-guesser ()
+       (c-c++/load-clang-args)
+@@ -129,10 +129,13 @@
+   (add-to-list 'spacemacs-jump-handlers-c-mode '(ycmd-goto :async t))
+   (dolist (mode '(c++-mode c-mode))
+     (spacemacs/set-leader-keys-for-major-mode mode
+-      "gG" 'ycmd-goto-imprecise)))
++      "gG" 'ycmd-goto-imprecise)
++    ))
+ 
+ (defun c-c++/post-init-company-ycmd ()
+-  (push 'company-ycmd company-backends-c-mode-common))
++  ;; (push '(company-clang :with company-gtags) company-backends-c-mode-common)
++  (push 'company-ycmd company-backends-c-mode-common)
++  )
+ 
+ (defun c-c++/pre-init-xcscope ()
+   (spacemacs|use-package-add-hook xcscope

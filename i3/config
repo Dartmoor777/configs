@@ -1,0 +1,281 @@
+# vim: filetype=i3
+
+#Basic settings
+set $mod Mod4
+floating_modifier $mod
+set $term terminator
+set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
+set $browser google-chrome-stable
+font pango:Source Code Pro 16px
+
+#The wifi manager applet:
+exec --no-startup-id nm-applet
+#For transparency:
+exec --no-startup-id xcompmgr -slt
+
+#My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
+exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
+exec_always ~/.screenlayout/screens.sh
+exec_always setxkbmap -layout us,ua,ru
+exec_always setxkbmap -option 'grp:alt_shift_toggle'
+exec_always ~/.config/i3/autoRenameWindows.py &
+
+#Needed for i3-gaps
+hide_edge_borders both
+for_window [class="^.*"] border pixel 0
+gaps inner 0
+gaps outer 0
+
+exec /home/dartmoor/Programs/Telegram/Telegram
+
+
+bar {
+colors {
+	focused_workspace #008080 #008080 #ffffff
+	inactive_workspace #000000 #000000 #005050
+	active_workspace #000000 #000000 #008080
+	urgent_workspace #8B0000 #8B0000 #000000
+	}
+	status_command bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
+	position top
+	}
+
+
+bindsym $mod+Return 		exec $term
+bindsym $mod+Shift+Return 	exec $term -e tmux -2
+
+bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+space		focus mode_toggle
+
+bindsym $mod+Shift+Escape 	exec i3-msg exit
+
+#bindsym $mod+BackSpace		exec $term
+bindsym $mod+Shift+BackSpace	exec sudo reboot
+
+bindsym $mod+Tab		workspace back_and_forth
+
+#bindsym $mod+grave
+#bindsym $mod+asciitilde
+
+#bindsym $mod+XF86Back
+#bindsym $mod+Shift+XF86Back
+
+#bindsym $mod+XF86Forward
+#bindsym $mod+Shift+XF86Forward
+#END
+
+#Letter Keys
+
+bindsym $mod+q		kill
+bindsym $mod+Shift+q	kill
+
+bindsym $mod+w		exec $browser
+bindsym $mod+Shift+w	exec --no-startup-id $browser
+
+bindsym $mod+r 		exec $term -e ranger
+bindsym $mod+Shift+r	restart
+
+bindsym $mod+t		layout tabbed
+bindsym $mod+Shift+t	layout toggle
+bindsym $mod+s		layout splitv
+bindsym $mod+Shift+s	split toggle
+
+bindsym $mod+u		exec $term -e "calcurse -D $HOME/.config/calcurse/"
+bindsym $mod+Shift+u	resize shrink width 10 px or 10ppt
+
+bindsym $mod+Shift+o	resize shrink height 10 px or 10 ppt
+
+bindsym $mod+Shift+i	resize grow height 10 px or 10 ppt
+
+bindsym $mod+Shift+p	resize grow width 10 px or 10 ppt
+
+bindsym $mod+v		gaps inner current plus 5
+bindsym $mod+Shift+v	gaps inner current minus 5
+
+bindsym $mod+d  exec dmenu_run -p run -sb "#586e75"  -nb "#002b36" -nf "#657b83" -fn Terminus-11
+
+bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
+
+
+
+bindsym $mod+h		focus left
+bindsym $mod+Shift+h	move left 30
+
+bindsym $mod+j		focus down
+bindsym $mod+Shift+j	move down 30
+
+bindsym $mod+k		focus up
+bindsym $mod+Shift+k	move up 30
+
+bindsym $mod+l		focus right
+bindsym $mod+Shift+l	move right 30
+
+bindsym $mod+z		gaps outer current plus 5
+bindsym $mod+Shift+z	gaps outer current minus 5
+
+bindsym $mod+x		exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $mod+Shift+x	exec shutdown now
+
+bindsym $mod+b		workspace prev
+
+bindsym $mod+n		workspace next
+#END
+
+#Function Buttons
+bindsym F1		exec --no-startup-id echo "help" > /dev/null
+#bindsym F2
+#bindsym F3
+#bindsym F4
+#bindsym F5
+#bindsym F6
+#bindsym F7
+#bindsym F8
+#bindsym F9
+#bindsym F10
+#bindsym F12
+
+#bindsym $mod+F1
+#bindsym $mod+F2
+bindsym $mod+F3		exec --no-startup-id arandr
+bindsym $mod+F4		exec --no-startup-id sudo systemctl suspend
+bindsym $mod+F5		exec --no-startup-id sudo systemctl restart NetworkManager
+#bindsym $mod+F6
+#bindsym $mod+F7		exec transset-df -a --dec .15
+#bindsym $mod+F8		exec transset-df -a --inc .15
+#bindsym $mod+F9		exec --no-startup-id sudo bash ~/.config/i3/mount.sh
+#bindsym $mod+F10	exec --no-startup-id sudo bash ~/.config/i3/unmount.sh
+bindsym $mod+F11	fullscreen toggle
+#bindsym $mod+F12	exec --no-startup-id marble
+
+#Arrow Keys
+
+
+
+
+#bindsym $mod+Shift+Left	exec --no-startup-id xdotool key XF86AudioNext   #focus left
+#bindsym $mod+Shift+Down	exec --no-startup-id xdotool key XF86AudioPause     #focus down
+#bindsym $mod+Shift+Up		exec --no-startup-id xdotool key XF86AudioPlay     #focus up
+#bindsym $mod+Shift+Right 	 exec --no-startup-id xdotool key XF86AudioPrev    #focus right
+#bindsym $mod+Shift+Left	move left
+#bindsym $mod+Shift+Down	move down
+#bindsym $mod+Shift+Up	move up
+#bindsym $mod+Shift+Right move right
+#END
+
+#Workspaces
+
+#set 1 "1:"
+#set 2 "2:"
+#set 3 "3:"
+#set 4 "4:"
+#set 5 "5:"
+#set 6 "6:"
+#set 7 "7:"
+#set 8 "8:"
+#set 9 "9:"
+#set 10 "10:"
+#set 6 "6:"
+#set 7 "7:"
+#set 8 "8:"
+#set 9 "9:"
+#set 10 "10:"
+
+# switch to workspace
+bindsym $mod+1		workspace number 1
+bindsym $mod+2		workspace number 2
+bindsym $mod+3		workspace number 3
+bindsym $mod+4		workspace number 4
+bindsym $mod+5		workspace number 5
+bindsym $mod+6		workspace number 6
+bindsym $mod+7		workspace number 7
+bindsym $mod+8		workspace number 8
+bindsym $mod+9		workspace number 9
+bindsym $mod+0		workspace number 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1	move container to workspace number 1
+bindsym $mod+Shift+2	move container to workspace number 2
+bindsym $mod+Shift+3	move container to workspace number 3
+bindsym $mod+Shift+4	move container to workspace number 4
+bindsym $mod+Shift+5	move container to workspace number 5
+bindsym $mod+Shift+6	move container to workspace number 6
+bindsym $mod+Shift+7	move container to workspace number 7
+bindsym $mod+Shift+8	move container to workspace number 8
+bindsym $mod+Shift+9	move container to workspace number 9
+bindsym $mod+Shift+0	move container to workspace 1number 0
+
+for_window [class="Terminator"] move to workspace number 3
+for_window [class="google-chrome"] move to workspace number 1
+for_window [class="emacs"] move to workspace number 3
+for_window [class="Telegram"] move to workspace number 2
+for_window [class="skypeforlinux"] move to workspace number 4
+#for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
+
+#bindsym $mod+Home		workspace 1
+#bindsym $mod+Shift+Home		move container to workspace 1
+#bindsym $mod+End		workspace 10
+#bindsym $mod+Shift+End		move container to workspace 10
+#bindsym $mod+Prior		workspace prev
+#bindsym $mod+Shift+Prior	move container to workspace prev
+#bindsym $mod+Next		workspace next
+#bindsym $mod+Shift+Next		move container to workspace next
+#END
+
+#Media
+#bindsym $mod+plus		exec --no-startup-id pamixer -i 5
+#bindsym $mod+Shift+plus		exec --no-startup-id pamixer -i 15
+
+#bindsym $mod+minus 		exec --no-startup-id pamixer -d 5
+#bindsym $mod+Shift+minus	exec --no-startup-id pamixer -d 15
+
+#bindsym $mod+bracketleft 	exec $lilbak
+#bindsym $mod+Shift+bracketleft 	exec $bigbak
+#
+#bindsym $mod+bracketright 	exec $lilfor
+#bindsym $mod+Shift+bracketright exec $bigfor
+#
+bindsym $mod+greater		exec --no-startup-id pamixer -i 5
+bindsym $mod+Shift+greater	exec --no-startup-id pamixer -i 15
+
+bindsym $mod+less 		exec --no-startup-id pamixer -d 5
+bindsym $mod+Shift+less		exec --no-startup-id pamixer -d 15
+
+
+
+#bindsym XF86Launch1		exec --no-startup-id killall ffmpeg
+
+bindsym XF86AudioPlay		exec $pause
+bindsym XF86AudioPause		exec $pause
+bindsym XF86AudioNext		exec $next
+bindsym XF86AudioPrev		exec $prev
+bindsym XF86AudioStop		exec $pause
+
+
+bindsym --release Print		exec --no-startup-id ~/.config/i3/screenShot.sh
+
+bindsym --release $mod+Print		exec --no-startup-id ~/.config/i3/screenShotArea.sh
+
+#bindsym Print exec "~/Programs/scripts/screenshooter.pl window"
+#bindsym --release Shift+Print exec "~/Programs/scripts/screenshooter.pl area"
+#bindsym $mod+Mod1+Print exec Print_Screen delay
+
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+
+#bindsym XF86AudioRaiseVolume	exec --no-startup-id pamixer -i 5
+#bindsym XF86AudioLowerVolume	exec --no-startup-id pamixer -d 5
+#bindsym XF86AudioMute		exec --no-startup-id pamixer -t
+#END
+
+#bindsym XF86Mail		exec $term -e "mutt -F ~/.config/mutt/muttrc"
+#bindsym XF86MyComputer		exec
+#bindsym $mod+XF86MyComputer	exec
+#bindsym XF86HomePage		exec --no-startup-id qutebrowser lukesmith.xyz
+bindsym $mod+XF86HomePage	exec --no-startup-id $browser
+bindsym $mod+XF86WWW		exec --no-startup-id $browser
