@@ -1,16 +1,39 @@
 ## My settings #######################
 
-export EDITOR=vim
+#
+# exports
+# \/\/\/
+export EDITOR=nvim
 export LANG=en_US.UTF-8
+export PATH=$PATH:$HOME/workspaces/sqnbuild
+export ws=$HOME/workspaces
+export MINICOM="-c off -C /home/oleksandrputin/minicom.log"
+#export GTAGSLABEL=pygments
+#
+# aliases
+# \/\/\/
+alias sfu="LD_LIBRARY_PATH=/home/oleksandrputin/workspaces/sfu/build/bin/ /home/oleksandrputin/workspaces/sfu/build/bin/./sfu"
+alias e='emacsclient --no-wait'
+alias vim='nvim'
+alias sclean='/home/oleksandrputin/Programs/scripts/./clean.sh'
+alias arg='/home/oleksandrputin/Programs/scripts/search.py'
+#
+autoload -Uz compinit
+compinit
+autoload bashcompinit
+bashcompinit
+source $HOME/workspaces/sqnbuild/script/sqnbuildbashrc
 export TERMINAL=terminator
 export cwork="$HOME/Programs/cwork"
-export stm="/home/dartmoor/Programs/stm32f4"
+export stm="$HOME/Programs/stm32f4"
+#
+# variables
+# \/\/\/
+MAKE_JOBS_IN=-j4
 
-alias qt='sudo /home/dartmoor/Qt/Tools/QtCreator/bin/qtcreator & exit'
 alias spc='emacs -nw'
 alias e='emacsclient -n -q'
-alias chrome='google-chrome-stable --proxy-server="http://dartarion777.had.su:46327" & exit'
-export go='/home/dartmoor/Programs/gowork'
+
 export KEYTIMEOUT=1
 ## Plugins #############################
 # Updates editor information when the keymap changes.
