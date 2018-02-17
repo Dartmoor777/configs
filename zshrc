@@ -1,3 +1,4 @@
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 # Filename:      /etc/zsh/zshrc
 # Purpose:       config file for zsh (z shell)
 # Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
@@ -2132,8 +2133,8 @@ grml_prompt_token_default=(
     #host              '%m '
     jobs              '[%j running job(s)] '
     newline           $'\n'
-    path              $'%F{red}╭─%f %F{yellow}%75<..<%~%<<%f \n'
-    percent           '%F{red}╰─%#➤ %f'
+    path              '%F{red}╭─%f(%F{red}%m%f) %F{yellow}%75<..<%~%<<%f '
+    percent           $'\n%F{red}╰─%f%F{red}%#➤ %f'
     rc                '%(?..%? )'
     rc-always         '%?'
     sad-smiley        '%(?..:()'
@@ -2327,7 +2328,7 @@ function prompt_grml_precmd () {
     emulate -L zsh
     local grmltheme=grml
     local -a left_items right_items
-    left_items=(change-root user at host path vcs percent)
+    left_items=(change-root user at host path vcs percent )
     right_items=(rc sad-smiley)
 
     prompt_grml_precmd_worker

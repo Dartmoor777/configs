@@ -14,8 +14,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xcompmgr -slt
 
 #My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
-exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
-exec_always ~/.screenlayout/screens.sh
+#exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 exec_always setxkbmap -layout us,ua,ru
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
 exec_always ~/.config/i3/autoRenameWindows.py &
@@ -26,7 +25,7 @@ for_window [class="^.*"] border pixel 0
 gaps inner 0
 gaps outer 0
 
-exec /home/dartmoor/Programs/Telegram/Telegram
+exec	--no-startup-id		zsh '/home/dartmoor/.config/i3/launch.sh'
 
 
 bar {
@@ -202,7 +201,7 @@ bindsym $mod+Shift+6	move container to workspace number 6
 bindsym $mod+Shift+7	move container to workspace number 7
 bindsym $mod+Shift+8	move container to workspace number 8
 bindsym $mod+Shift+9	move container to workspace number 9
-bindsym $mod+Shift+0	move container to workspace 1number 0
+bindsym $mod+Shift+0	move container to workspace number 0
 
 for_window [class="Terminator"] move to workspace number 3
 for_window [class="google-chrome"] move to workspace number 1

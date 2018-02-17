@@ -31,6 +31,7 @@ import i3ipc
 import logging
 import signal
 import sys
+import os
 import fontawesome as fa
 
 from util import *
@@ -70,6 +71,7 @@ WINDOW_ICONS = {
     'anki': fa.icons['sticky-note-o'],
     'thunderbird': fa.icons['envelope-o'],
     'skypeforlinux': fa.icons['skype'],
+    'oracle vm virtualbox manager': fa.icons['dropbox'],
 }
 
 # This icon is used for any application not in the list above
@@ -79,7 +81,8 @@ DEFAULT_ICON = fa.icons['certificate']
 def icon_for_window(window):
     # Try all window classes and use the first one we have an icon for
     classes = xprop(window.window, 'WM_CLASS')
-    if classes != None and len(classes) > 0:
+    classes.extend(xprop(window.window, 'WM_NAME'))
+    if (classes != None and len(classes)  > 0) or (names != None and len(names)  > 0):
         for cls in classes:
             cls = cls.lower()  # case-insensitive matching
             if cls in WINDOW_ICONS:
@@ -94,8 +97,6 @@ def icon_for_window(window):
 # for example: workspace numbering on two monitors: [1, 2, 3], [5, 6]
 def rename_workspaces(i3):
     ws_infos = i3.get_workspaces()
-    prev_output = None
-    n = 1
     for ws_index, workspace in enumerate(i3.get_tree().workspaces()):
         ws_info = ws_infos[ws_index]
 
@@ -105,13 +106,8 @@ def rename_workspaces(i3):
 
         # As we enumerate, leave one gap in workspace numbers between each monitor.
         # This leaves a space to insert a new one later.
-        if ws_info.output != prev_output and prev_output != None:
-            n += 1
-        prev_output = ws_info.output
-
         # renumber workspace
-        name_parts['num'] = n
-        n += 1
+        name_parts['num'] = ws_info['num']
 
         new_name = construct_workspace_name(name_parts)
         if workspace.name == new_name:
