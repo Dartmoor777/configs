@@ -8,17 +8,14 @@ set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
 set $browser google-chrome-stable
 font pango:Source Code Pro 16px
 
-#The wifi manager applet:
-exec --no-startup-id nm-applet
 #For transparency:
 exec --no-startup-id xcompmgr -slt
 
 #My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
-exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
-exec_always ~/.screenlayout/screens.sh
 exec_always setxkbmap -layout us,ua,ru
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
-exec_always ~/.config/i3/autoRenameWindows.py &
+exec_always	--no-startup-id 	zsh 'xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --mode 1360x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP2 --off'
+exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
 #Needed for i3-gaps
 hide_edge_borders both
@@ -26,7 +23,55 @@ for_window [class="^.*"] border pixel 0
 gaps inner 0
 gaps outer 0
 
-exec /home/dartmoor/Programs/Telegram/Telegram
+
+#Assign workspaces to screens
+#workspace 1 output eDP1
+#workspace 2 output HDMI1
+#workspace 3 output HDMI1
+#workspace 4 output HDMI1
+#workspace 5 output HDMI1
+#workspace 6 output HDMI1
+#workspace 7 output HDMI1
+#workspace 8 output HDMI1
+#workspace 9 output HDMI1
+#workspace 10 output HDMI1
+
+#python script for renaming
+exec_always nohup /home/oleksandrputin/.config/i3/autoRenameWindows.py
+
+#Assigning apps to workspace
+#assign [class="terminator"] 1
+#assign [class="Firefox"] 2
+#assign [class="Emacs"] 3
+#assign [class="Telegram"] 4
+#assign [class="Skype"] 4
+#assign [class="Thunderbird"] 5
+#assign [class="Evince"] 6
+#assign [class="Toplevel"] 7
+
+#The wifi manager applet:
+exec	--no-startup-id		nm-applet
+exec	--no-startup-id 	terminator
+exec	--no-startup-id 	firefox
+exec	--no-startup-id 	emacs
+exec	--no-startup-id 	/home/oleksandrputin/Programs/Telegram/Telegram
+exec	--no-startup-id 	skypeforlinux
+exec	--no-startup-id 	thunderbird
+exec	--no-startup-id 	evince
+exec	--no-startup-id 	nohup /home/oleksandrputin/workspaces/DM/dm/dm.py
+
+
+#keeping at proper place
+#exec_always --no-startup-id i3-msg move workspace number 1 to output eDP1
+#exec_always --no-startup-id i3-msg move workspace number 2 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 3 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 4 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 5 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 6 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 7 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 8 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 9 to output HDMI1
+#exec_always --no-startup-id i3-msg move workspace number 10 to output HDMI1
 
 
 bar {
@@ -36,7 +81,7 @@ colors {
 	active_workspace #000000 #000000 #008080
 	urgent_workspace #8B0000 #8B0000 #000000
 	}
-	status_command bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
+	status_command ~/repos/bumblebee-status/bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
 	position top
 	}
 
@@ -204,11 +249,7 @@ bindsym $mod+Shift+8	move container to workspace number 8
 bindsym $mod+Shift+9	move container to workspace number 9
 bindsym $mod+Shift+0	move container to workspace 1number 0
 
-for_window [class="Terminator"] move to workspace number 3
-for_window [class="google-chrome"] move to workspace number 1
-for_window [class="emacs"] move to workspace number 3
-for_window [class="Telegram"] move to workspace number 2
-for_window [class="skypeforlinux"] move to workspace number 4
+#for_window [class="skypeforlinux"] move to workspace number 4
 #for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 50 px or 50ppt
 
 #bindsym $mod+Home		workspace 1

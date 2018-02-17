@@ -27,12 +27,13 @@ NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sheerun/vim-wombat-scheme'
-NeoBundle 'Valloric/YouCompleteMe', { 'do': './install --clang-completer' }
+"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'peterhoeg/vim-qml'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 call neobundle#end()
 
@@ -48,6 +49,8 @@ set number
 let mapleader = ","
 let g:deoplete#enable_at_startup = 1
 set shiftwidth=4
+set tabstop=4
+set ignorecase
 
 " theme
 set t_Co=256
@@ -61,6 +64,7 @@ let g:airline#extensions#tabline#enabled = 1
 nmap <leader>t :NERDTreeToggle<cr>
 
 " Clipboard
+"set clipboard+="unnamedplus"
 set clipboard=unnamedplus
 
 " Neovim-qt Guifont command, to change the font
@@ -76,18 +80,18 @@ nmap <silent> <C-p> :Files<CR>
 nmap <F8> :TagbarToggle<CR>
 
 " You complete me
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_warning_symbol='**'
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_auto_trigger = 1
-nmap <silent> <C-j> :YcmCompleter GoTo<CR>
-nmap <silent> <C-]> :Tags<CR>
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_add_preview_to_completeopt=0
+"let g:ycm_warning_symbol='**'
+"let g:ycm_collect_identifiers_from_tags_files=1
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_auto_trigger = 1
+"nmap <silent> <C-j> :YcmCompleter GoTo<CR>
+"nmap <silent> <C-]> :Tags<CR>
 
 " Configure buffers
 " This allows buffers to be hidden.
@@ -116,49 +120,4 @@ endif
 :nnoremap <A-j> <C-w>j
 :nnoremap <A-k> <C-w>k
 :nnoremap <A-l> <C-w>l
-:tnoremap <Esc> <C-\><C-n>
-
-
-"auto pairs
-"execute "set <M-p>=\ep"
-"nnoremap <M-p> p
-"execute "set <M-e>=\ee"
-"nnoremap <M-e> e
-"execute "set <M-n>=\en"
-"nnoremap <M-n> n
-"execute "set <M-b>=\eb"
-"nnoremap <M-b> b
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutToggle='<M-p>'
-let g:AutoPairsShortcutFastWrap='<M-e>'
-let g:AutoPairsShortcutJump='<M-n>'
-let g:AutoPairsShortcutBackInsert='<M-b>'
-
-"complile by key
-
-autocmd BufRead,BufNewFile *.pas nnoremap <F4> :!clear; fpc % <enter>
-autocmd BufRead,BufNewFile *.pas nnoremap <F5> :!clear; ./%< <enter>
-autocmd BufRead,BufNewFile *.pas nnoremap <C-F5> :!./%<
-
-autocmd BufRead,BufNewFile *.cpp nnoremap <F4> :!clear; g++ -o %< % <enter>
-autocmd BufRead,BufNewFile *.cpp nnoremap <F5> :!clear; g++ -o %< % && ./%< <enter>
-autocmd BufRead,BufNewFile *.cpp nnoremap <C-F5> :!./%<
-
-autocmd BufRead,BufNewFile *.cc nnoremap <F4> :!clear; g++ -o %< % <enter>
-autocmd BufRead,BufNewFile *.cc nnoremap <F5> :!clear; g++ -o %< % && ./%< <enter>
-autocmd BufRead,BufNewFile *.cc nnoremap <C-F5> :!./%<
-
-autocmd BufRead,BufNewFile *.c nnoremap <F4> :!clear; gcc -o %< % <enter>
-autocmd BufRead,BufNewFile *.c nnoremap <F5> :!clear; gcc -o %< % && ./%< <enter>
-autocmd BufRead,BufNewFile *.c nnoremap <C-F5> :!./%<
-
-autocmd FileType cpp set keywordprg=cppman
-autocmd FileType h set keywordprg=cppman
-autocmd FileType c set keywordprg=cppman
-
-autocmd BufRead,BufNewFile *.go nnoremap <F5> :!clear; go run % <enter>
-autocmd BufRead,BufNewFile *.go nnoremap <C-F5> :!clear; go run %
-autocmd BufRead,BufNewFile *.go nnoremap <F4> :GoTest % <enter>
-
-autocmd BufRead,BufNewFile *.pl nnoremap <F5> :!clear; perl % <enter>
-autocmd BufRead,BufNewFile *.pl nnoremap <C-F5> :!clear; perl %
+":tnoremap <Esc> <C-\><C-n>

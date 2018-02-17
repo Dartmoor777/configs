@@ -2132,8 +2132,8 @@ grml_prompt_token_default=(
     #host              '%m '
     jobs              '[%j running job(s)] '
     newline           $'\n'
-    path              $'%F{red}╭─%f %F{yellow}%75<..<%~%<<%f \n'
-    percent           '%F{red}╰─%#➤ %f'
+    path              $'%F{red}╭─%f(%F{red}%m%f) %F{yellow}%70<..<%~%<<%f '
+    percent           $'\n%F{red}╰─%#➤ %f'
     rc                '%(?..%? )'
     rc-always         '%?'
     sad-smiley        '%(?..:()'
@@ -2669,13 +2669,13 @@ if [[ -r /etc/debian_version ]] ; then
         #a3# Execute \kbd{apt-cache policy}
         alias acp='apt-cache policy'
         #a3# Execute \kbd{apt-get dist-upgrade}
-        salias adg="apt-get dist-upgrade"
+        #salias adg="apt-get dist-upgrade"
         #a3# Execute \kbd{apt-get install}
-        salias agi="apt-get install"
+        #salias agi="apt-get install"
         #a3# Execute \kbd{aptitude install}
         salias ati="aptitude install"
         #a3# Execute \kbd{apt-get upgrade}
-        salias ag="apt-get upgrade"
+        #salias ag="apt-get upgrade"
         #a3# Execute \kbd{apt-get update}
         salias au="apt-get update"
         #a3# Execute \kbd{aptitude update ; aptitude safe-upgrade}

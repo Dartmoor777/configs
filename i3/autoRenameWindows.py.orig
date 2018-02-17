@@ -66,34 +66,57 @@ WINDOW_ICONS = {
     'terminator': fa.icons['terminal'],
     'xfce4-terminal': fa.icons['terminal'],
     'zenity': fa.icons['window-maximize'],
+<<<<<<< 4e2170d638882e13d8ee0905c3e274d8ede15505
     'telegram': fa.icons['telegram'],
     'anki': fa.icons['sticky-note-o'],
-    'thunderbird': fa.icons['envelope'],
-    'skype preview': fa.icons['skype'],
-    'oracle vm virtualbox manager': fa.icons['dropbox'],
+    'thunderbird': fa.icons['envelope-o'],
+    'skypeforlinux': fa.icons['skype'],
+=======
     'telegram': fa.icons['paper-plane'],
-    'sequans communications - view 0 [not connected]': fa.icons['eye-slash'],
-    'sequans communications - view 0 [live]': fa.icons['eye'],
-    'sequans communications - cli for ue': fa.icons['eye'],
+    'anki': fa.icons['sticky-note-o'],
+    'thunderbird': fa.icons['envelope-square'],
+    'mail': fa.icons['envelope-square'],
+    'skype preview': fa.icons['skype'],
     'sequans communications - dm': fa.icons['eye'],
+    'sequans communications - cli for ue': fa.icons['eye'],
+    'sequans communications - view 0 [live]': fa.icons['eye'],
+    'sequans communications - view 0 [not connected]': fa.icons['eye-slash'],
+    'wireshark': fa.icons['bug'],
+>>>>>>> first commit
 }
 
 # This icon is used for any application not in the list above
 DEFAULT_ICON = fa.icons['certificate']
 
+<<<<<<< 4e2170d638882e13d8ee0905c3e274d8ede15505
 
 def icon_for_window(window):
     # Try all window classes and use the first one we have an icon for
     classes = xprop(window.window, 'WM_CLASS')
-    classes.extend(xprop(window.window, 'WM_NAME'))
-    if (classes != None and len(classes)  > 0):
+=======
+def check_classes(classes):
+>>>>>>> first commit
+    if classes != None and len(classes) > 0:
         for cls in classes:
             cls = cls.lower()  # case-insensitive matching
             if cls in WINDOW_ICONS:
                 return WINDOW_ICONS[cls]
+<<<<<<< 4e2170d638882e13d8ee0905c3e274d8ede15505
     logging.info(
         'No icon available for window with classes: %s' % str(classes))
     return DEFAULT_ICON
+=======
+            else:
+                return DEFAULT_ICON
+
+def icon_for_window(window):
+    # Try all window classes and use the first one we have an icon for
+    returned = check_classes(xprop(window.window, 'WM_CLASS'))
+    if returned == DEFAULT_ICON:
+        return check_classes(xprop(window.window, 'WM_NAME'))
+    else:
+        return returned
+>>>>>>> first commit
 
 
 # renames all workspaces based on the windows present
@@ -102,6 +125,7 @@ def icon_for_window(window):
 def rename_workspaces(i3):
     ws_infos = i3.get_workspaces()
     prev_output = None
+    n = 1
     for ws_index, workspace in enumerate(i3.get_tree().workspaces()):
         ws_info = ws_infos[ws_index]
 
@@ -111,9 +135,18 @@ def rename_workspaces(i3):
 
         # As we enumerate, leave one gap in workspace numbers between each monitor.
         # This leaves a space to insert a new one later.
+<<<<<<< 4e2170d638882e13d8ee0905c3e274d8ede15505
+        if ws_info.output != prev_output and prev_output != None:
+            n += 1
+=======
+        #if ws_info.output != prev_output and prev_output != None:
+            #n += 1
+>>>>>>> first commit
         prev_output = ws_info.output
+
         # renumber workspace
-        name_parts['num'] = ws_info['num']
+        name_parts['num'] = n
+        n += 1
 
         new_name = construct_workspace_name(name_parts)
         if workspace.name == new_name:

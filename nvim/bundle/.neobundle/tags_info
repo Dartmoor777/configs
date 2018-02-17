@@ -1,0 +1,14 @@
+auto-pairs
+fzf
+fzf.vim
+neobundle.vim
+nerdtree
+syntastic
+tagbar
+vim-airline
+vim-fugitive
+vim-orgmode
+vim-qml
+vim-speeddating
+vim-trailing-whitespace
+vim-wombat-scheme
