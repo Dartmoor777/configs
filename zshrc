@@ -2132,7 +2132,7 @@ grml_prompt_token_default=(
     #host              '%m '
     jobs              '[%j running job(s)] '
     newline           $'\n'
-    path              $'%F{red}╭─%f(%F{red}%m%f) %F{yellow}%70<..<%~%<<%f '
+    path              $'%F{red}╭─%f(%F{red}work%f) %F{yellow}%70<..<%~%<<%f '
     percent           $'\n%F{red}╰─%#➤ %f'
     rc                '%(?..%? )'
     rc-always         '%?'

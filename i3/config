@@ -6,7 +6,10 @@ floating_modifier $mod
 set $term terminator
 set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
 set $browser google-chrome-stable
-font pango:Source Code Pro 16px
+#font pango:Source Code Pro 16px
+font pango:FontAwesome 16px
+#font pango:Ubuntu Mono derivative Powerline 16px
+#font pango:fontawesome-webfont 16px
 
 #For transparency:
 exec --no-startup-id xcompmgr -slt
@@ -14,8 +17,8 @@ exec --no-startup-id xcompmgr -slt
 #My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
 exec_always setxkbmap -layout us,ua,ru
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
-exec_always	--no-startup-id 	zsh 'xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --mode 1360x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP2 --off'
-exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
+#exec_always	--no-startup-id 	zsh 'xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --mode 1360x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP2 --off'
+#exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
 #Needed for i3-gaps
 hide_edge_borders both
@@ -23,6 +26,7 @@ for_window [class="^.*"] border pixel 0
 gaps inner 0
 gaps outer 0
 
+exec nohup /home/oleksandrputin/.config/i3/startup.sh
 
 #Assign workspaces to screens
 #workspace 1 output eDP1
@@ -37,7 +41,7 @@ gaps outer 0
 #workspace 10 output HDMI1
 
 #python script for renaming
-exec_always nohup /home/oleksandrputin/.config/i3/autoRenameWindows.py
+#exec_always nohup /home/oleksandrputin/.config/i3/autoRenameWindows.py
 
 #Assigning apps to workspace
 #assign [class="terminator"] 1
@@ -50,15 +54,15 @@ exec_always nohup /home/oleksandrputin/.config/i3/autoRenameWindows.py
 #assign [class="Toplevel"] 7
 
 #The wifi manager applet:
-exec	--no-startup-id		nm-applet
-exec	--no-startup-id 	terminator
-exec	--no-startup-id 	firefox
-exec	--no-startup-id 	emacs
-exec	--no-startup-id 	/home/oleksandrputin/Programs/Telegram/Telegram
-exec	--no-startup-id 	skypeforlinux
-exec	--no-startup-id 	thunderbird
-exec	--no-startup-id 	evince
-exec	--no-startup-id 	nohup /home/oleksandrputin/workspaces/DM/dm/dm.py
+#exec	--no-startup-id		nm-applet
+#exec	--no-startup-id 	terminator
+#exec	--no-startup-id 	firefox
+#exec	--no-startup-id 	emacs
+#exec	--no-startup-id 	/home/oleksandrputin/Programs/Telegram/Telegram
+#exec	--no-startup-id 	skypeforlinux
+#exec	--no-startup-id 	thunderbird
+#exec	--no-startup-id 	evince
+#exec	--no-startup-id 	nohup /home/oleksandrputin/workspaces/DM/dm/dm.py
 
 
 #keeping at proper place
