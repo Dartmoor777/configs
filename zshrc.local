@@ -5,33 +5,18 @@
 # \/\/\/
 export EDITOR=vim
 export LANG=en_US.UTF-8
-export PATH=$PATH:$HOME/workspaces/sqnbuild
-export PATH=$PATH:$HOME/Programs
-export PATH=$PATH:$HOME/repos/ccls/build/release/bin
-export ws=$HOME/workspaces
-export teseo=$ws/catm5.2.5.0-cloe/4G-cloe/build/tools/TeseoProgrammer.exe
-
-export MINICOM="-c off -C /home/oleksandrputin/minicom.log"
-#export GTAGSLABEL=pygments
 #
 # aliases
 # \/\/\/
-alias sfu="LD_LIBRARY_PATH=/home/oleksandrputin/workspaces/sfu/build/bin/ /home/oleksandrputin/workspaces/sfu/build/bin/./sfu"
 alias e='emacsclient -n'
 alias eim='emacsclient -nw'
 # alias vim='nvim'
-alias sclean='/home/oleksandrputin/Programs/scripts/./clean.sh'
-alias arg='/home/oleksandrputin/Programs/scripts/search.py'
-alias prepare_db='/home/oleksandrputin/Programs/scripts/prepare_db.sh'
 #
 autoload -Uz compinit
 compinit
 autoload bashcompinit
 bashcompinit
-source $HOME/workspaces/sqnbuild/script/sqnbuildbashrc
 export TERMINAL=terminator
-export cwork="$HOME/Programs/cwork"
-export stm="$HOME/Programs/stm32f4"
 #
 # variables
 # \/\/\/
@@ -91,3 +76,5 @@ if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
 fi
 
 setopt vi
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh

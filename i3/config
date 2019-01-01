@@ -5,14 +5,11 @@ set $mod Mod4
 floating_modifier $mod
 set $term terminator
 set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
-set $browser google-chrome-stable
-#font pango:Source Code Pro 16px
-font pango:FontAwesome 16px
-#font pango:Ubuntu Mono derivative Powerline 16px
-#font pango:fontawesome-webfont 16px
+set $browser firefox
+font pango:FontAwesome 18px
 
 #For transparency:
-exec --no-startup-id xcompmgr -slt
+#exec --no-startup-id xcompmgr -slt
 
 #My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
 exec_always setxkbmap -layout us,ua,ru
@@ -23,59 +20,10 @@ exec_always setxkbmap -option 'grp:alt_shift_toggle'
 #Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
-gaps inner 0
-gaps outer 0
+#gaps inner 0
+#gaps outer 0
 
 exec nohup /home/oleksandrputin/.config/i3/startup.sh
-
-#Assign workspaces to screens
-#workspace 1 output eDP1
-#workspace 2 output HDMI1
-#workspace 3 output HDMI1
-#workspace 4 output HDMI1
-#workspace 5 output HDMI1
-#workspace 6 output HDMI1
-#workspace 7 output HDMI1
-#workspace 8 output HDMI1
-#workspace 9 output HDMI1
-#workspace 10 output HDMI1
-
-#python script for renaming
-#exec_always nohup /home/oleksandrputin/.config/i3/autoRenameWindows.py
-
-#Assigning apps to workspace
-#assign [class="terminator"] 1
-#assign [class="Firefox"] 2
-#assign [class="Emacs"] 3
-#assign [class="Telegram"] 4
-#assign [class="Skype"] 4
-#assign [class="Thunderbird"] 5
-#assign [class="Evince"] 6
-#assign [class="Toplevel"] 7
-
-#The wifi manager applet:
-#exec	--no-startup-id		nm-applet
-#exec	--no-startup-id 	terminator
-#exec	--no-startup-id 	firefox
-#exec	--no-startup-id 	emacs
-#exec	--no-startup-id 	/home/oleksandrputin/Programs/Telegram/Telegram
-#exec	--no-startup-id 	skypeforlinux
-#exec	--no-startup-id 	thunderbird
-#exec	--no-startup-id 	evince
-#exec	--no-startup-id 	nohup /home/oleksandrputin/workspaces/DM/dm/dm.py
-
-
-#keeping at proper place
-#exec_always --no-startup-id i3-msg move workspace number 1 to output eDP1
-#exec_always --no-startup-id i3-msg move workspace number 2 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 3 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 4 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 5 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 6 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 7 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 8 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 9 to output HDMI1
-#exec_always --no-startup-id i3-msg move workspace number 10 to output HDMI1
 
 
 bar {
@@ -85,7 +33,7 @@ colors {
 	active_workspace #000000 #000000 #008080
 	urgent_workspace #8B0000 #8B0000 #000000
 	}
-	status_command ~/repos/bumblebee-status/bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
+	status_command bumblebee-status -m nvidiagpu cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
 	position top
 	}
 
@@ -138,12 +86,12 @@ bindsym $mod+Shift+i	resize grow height 10 px or 10 ppt
 
 bindsym $mod+Shift+p	resize grow width 10 px or 10 ppt
 
-bindsym $mod+v		gaps inner current plus 5
-bindsym $mod+Shift+v	gaps inner current minus 5
+#bindsym $mod+v		gaps inner current plus 5
+#bindsym $mod+Shift+v	gaps inner current minus 5
 
 bindsym $mod+d  exec dmenu_run -p run -sb "#586e75"  -nb "#002b36" -nf "#657b83" -fn Terminus-11
 
-bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
+#bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
 
 
 
@@ -159,8 +107,8 @@ bindsym $mod+Shift+k	move up 30
 bindsym $mod+l		focus right
 bindsym $mod+Shift+l	move right 30
 
-bindsym $mod+z		gaps outer current plus 5
-bindsym $mod+Shift+z	gaps outer current minus 5
+#bindsym $mod+z		gaps outer current plus 5
+#bindsym $mod+Shift+z	gaps outer current minus 5
 
 bindsym $mod+x		exec --no-startup-id ~/.config/i3/lock.sh
 bindsym $mod+Shift+x	exec shutdown now
