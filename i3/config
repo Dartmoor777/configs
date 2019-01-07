@@ -67,7 +67,7 @@ colors {
 #   Start some programs
 #########################
 
-exec nohup /home/$user/.config/i3/startup.sh
+exec nohup /home/$user/.config/i3/startup.py
 
 
 #########################
