@@ -40,13 +40,6 @@ font pango:FontAwesome 18px
 #For transparency:
 exec --no-startup-id xcompmgr -slt
 
-#Set keyboard layout
-exec_always setxkbmap -layout us,ua,ru
-exec_always setxkbmap -option 'grp:alt_shift_toggle'
-
-#Wall paper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/wall.jpg
-
 #GUI look
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
