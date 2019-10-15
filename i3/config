@@ -252,8 +252,9 @@ bindsym XF86AudioPrev		exec $prev
 bindsym XF86AudioStop		exec $pause
 
 
-bindsym --release Print		exec --no-startup-id ~/.config/i3/screenShot.sh
-bindsym --release $mod+Print	exec --no-startup-id ~/.config/i3/screenShotArea.sh
+bindsym --release Print		exec --no-startup-id flameshot gui
+#bindsym --release Print		exec --no-startup-id ~/.config/i3/screenShot.sh
+#bindsym --release $mod+Print	exec --no-startup-id ~/.config/i3/screenShotArea.sh
 
 
 

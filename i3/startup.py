@@ -92,6 +92,7 @@ class starter:
 
         # launch apps which should be started at any case
         self.launch_app_tray('nm-applet')
+        self.launch_app_tray('flameshot')
         self.launch_app_tray('feh', '--bg-scale ~/Pictures/wallpapers/wall.jpg')
 
         # launch apps according to caps lock state
@@ -103,13 +104,13 @@ class starter:
                 self.launch_app_gui(1, self.displays[0], 'terminator', '-e \'tmux -2 attach || tmux -2\'')
                 self.launch_app_gui(2, self.displays[0], 'firefox')
                 self.launch_app_gui(3, self.displays[0], 'emacs')
-                self.launch_app_gui(9, self.displays[0], 'skypeforlinux')
+                # self.launch_app_gui(9, self.displays[0], 'skypeforlinux')
                 self.launch_app_gui(9, self.displays[0], 'telegram-desktop')
             else:
                 self.launch_app_gui(1, self.displays[0], 'terminator', '-e \'tmux -2 attach || tmux -2\'')
                 self.launch_app_gui(2, self.displays[0], 'firefox')
                 self.launch_app_gui(3, self.displays[0], 'emacs')
-                self.launch_app_gui(9, self.displays[1], 'skypeforlinux')
+                # self.launch_app_gui(9, self.displays[1], 'skypeforlinux')
                 self.launch_app_gui(9, self.displays[1], 'telegram-desktop')
 
             self.i3.command('workspace 1')
