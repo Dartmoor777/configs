@@ -32,6 +32,15 @@ source $HOME/workspaces/sqnbuild/script/sqnbuildbashrc
 export TERMINAL=terminator
 export cwork="$HOME/Programs/cwork"
 export stm="$HOME/Programs/stm32f4"
+
+#
+# custom functions
+# \/\/\/
+smar_test()
+{
+	docker exec -w ${PWD} smar_dockerd bash -c ${@}
+}
+
 #
 # variables
 # \/\/\/

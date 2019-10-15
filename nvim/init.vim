@@ -21,17 +21,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'tpope/vim-speeddating'
+" NeoBundle 'jceb/vim-orgmode'
+" NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sheerun/vim-wombat-scheme'
 "NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'peterhoeg/vim-qml'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bronson/vim-trailing-whitespace'
 
@@ -68,7 +68,7 @@ nmap <leader>t :NERDTreeToggle<cr>
 set clipboard=unnamedplus
 
 " Neovim-qt Guifont command, to change the font
-command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>")
+" command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>")
 " Set font on start
 let g:Guifont="DejaVu Sans Mono for Powerline:h11"
 

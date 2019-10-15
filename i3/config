@@ -15,8 +15,8 @@ font pango:FontAwesome 16px
 exec --no-startup-id xcompmgr -slt
 
 #My background is always in ~/.config/wall.png. I have a shortcut in my file manager (ranger) that will automatically move a selected file here, so I can change by background on the go.
-exec_always setxkbmap -layout us,ua,ru
-exec_always setxkbmap -option 'grp:alt_shift_toggle'
+#exec_always setxkbmap -layout us,ua,ru
+#exec_always setxkbmap -option 'grp:alt_shift_toggle'
 #exec_always	--no-startup-id 	zsh 'xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --mode 1360x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP2 --off'
 #exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
@@ -85,7 +85,7 @@ colors {
 	active_workspace #000000 #000000 #008080
 	urgent_workspace #8B0000 #8B0000 #000000
 	}
-	status_command ~/repos/bumblebee-status/bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox-powerline
+	status_command ~/repos/bumblebee-status/bumblebee-status -m cpu memory pasink battery datetime -p  datetime.format="%a, %b %d, %Y at %I:%M %p" -t gruvbox
 	position top
 	}
 
@@ -296,9 +296,10 @@ bindsym XF86AudioPrev		exec $prev
 bindsym XF86AudioStop		exec $pause
 
 
-bindsym --release Print		exec --no-startup-id ~/.config/i3/screenShot.sh
+bindsym --release Print		exec --no-startup-id flameshot gui
 
-bindsym --release $mod+Print		exec --no-startup-id ~/.config/i3/screenShotArea.sh
+bindsym --release $mod+Print		exec --no-startup-id flameshot screen
+#bindsym --release $mod+Print		exec --no-startup-id ~/.config/i3/screenShotArea.sh
 
 #bindsym Print exec "~/Programs/scripts/screenshooter.pl window"
 #bindsym --release Shift+Print exec "~/Programs/scripts/screenshooter.pl area"
